@@ -1,0 +1,409 @@
+swagger: '2.0'
+info:
+  description: FoodPhone API Documentation
+  version: 1.0.0
+  title: FoodPhone
+host: 'localhost:8080'
+basePath: /api
+tags:
+  - name: category
+    description: Category Products
+  - name: rol
+    description: Rol Users
+  - name: menuCategory
+    description: Category Menus
+schemes:
+  - http
+paths:
+
+#category
+  /category/all:
+    get:
+      tags:
+        - category
+      summary: Get all categories
+      description: ""
+      operationId: getAllCategories
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Category'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Category not found
+  /category:
+    post:
+      tags:
+        - category
+      summary: Create new category
+      description: ""
+      operationId: createCategory
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: new category
+          required: false
+          schema:
+            $ref: "#/definitions/Category"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Category"
+        "400":
+          description: Invalid Category
+  /category/{categoryId}:
+    get:
+      tags:
+        - category
+      summary: Get specific category
+      description: ""
+      operationId: getCategoryById
+      produces:
+        - application/json
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of category
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Category'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Category not found
+    put:
+      tags:
+        - category
+      summary: Update an existing category
+      description: ""
+      operationId: updateCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of category
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update category
+          required: false
+          schema:
+            $ref: "#/definitions/Category"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Category not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - category
+      summary: Delete category by ID
+      description: ""
+      operationId: deleteCategory
+      produces:
+        - application/json
+      parameters:
+        - name: categoryId
+          in: path
+          description: ID of the category to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Category'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Category not found
+
+#rol
+  /rol/all:
+    get:
+      tags:
+        - rol
+      summary: Get all roles
+      description: ""
+      operationId: getAllRoles
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Rol'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Rol not found
+  /rol:
+    post:
+      tags:
+        - rol
+      summary: Create new rol
+      description: ""
+      operationId: createRol
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: new rol
+          required: false
+          schema:
+            $ref: "#/definitions/Rol"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Rol"
+        "400":
+          description: Invalid Rol
+  /rol/{rolId}:
+    get:
+      tags:
+        - rol
+      summary: Get specific rol
+      description: ""
+      operationId: getRolById
+      produces:
+        - application/json
+      parameters:
+        - name: rolId
+          in: path
+          description: ID of rol
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Rol'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Rol not found
+    put:
+      tags:
+        - rol
+      summary: Update an existing rol
+      description: ""
+      operationId: updateRol
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: rolId
+          in: path
+          description: ID of rol
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update rol
+          required: false
+          schema:
+            $ref: "#/definitions/Rol"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Rol not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - rol
+      summary: Delete rol by ID
+      description: ""
+      operationId: deleteRol
+      produces:
+        - application/json
+      parameters:
+        - name: rolId
+          in: path
+          description: ID of the rol to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Rol'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Rol not found
+          
+#menuCategory
+  /menuCategory/all:
+    get:
+      tags:
+        - menuCategory
+      summary: Get all menuCategories
+      description: ""
+      operationId: getAllRoles
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MenuCategory'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: MenuCategory not found
+  /menuCategory:
+    post:
+      tags:
+        - menuCategory
+      summary: Create new menuCategory
+      description: ""
+      operationId: createRol
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: new menuCategory
+          required: false
+          schema:
+            $ref: "#/definitions/MenuCategory"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/MenuCategory"
+        "400":
+          description: Invalid MenuCategory
+  /menuCategory/{menuCategoryId}:
+    get:
+      tags:
+        - menuCategory
+      summary: Get specific menuCategory
+      description: ""
+      operationId: getRolById
+      produces:
+        - application/json
+      parameters:
+        - name: menuCategoryId
+          in: path
+          description: ID of menuCategory
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MenuCategory'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: MenuCategory not found
+    put:
+      tags:
+        - menuCategory
+      summary: Update an existing menuCategory
+      description: ""
+      operationId: updateRol
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: menuCategoryId
+          in: path
+          description: ID of menuCategory
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update menuCategory
+          required: false
+          schema:
+            $ref: "#/definitions/MenuCategory"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: MenuCategory not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - menuCategory
+      summary: Delete menuCategory by ID
+      description: ""
+      operationId: deleteRol
+      produces:
+        - application/json
+      parameters:
+        - name: menuCategoryId
+          in: path
+          description: ID of the menuCategory to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MenuCategory'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: MenuCategory not found
+
+definitions:
+  Category:
+    type: object
+    properties:
+      id:
+        type: string
+      description:
+        type: string
+      isActive:
+        type: boolean
+    xml:
+      name: Category
+  Rol:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+      xml:
+        name: Rol
+  MenuCategory:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+      xml:
+        name: MenuCategory
