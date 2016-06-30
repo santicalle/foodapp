@@ -12,7 +12,7 @@ exports.getAllCompany = function(req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
             res.json(200, {
                 status: 'success',
@@ -29,7 +29,7 @@ exports.getIdCompany = function(req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
 
             res.json(200, {
@@ -64,7 +64,7 @@ exports.createCompany = function (req, res, next) {
             res.json(400, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
 
             res.json(200, {
@@ -77,14 +77,21 @@ exports.createCompany = function (req, res, next) {
 
 exports.updateCompany = function (req, res, next) {
     console.log('Update specific company ' + req.params.company_id);
+
+    var casted = req.body.categories.map(function( category ) {
+        return mongoose.Types.ObjectId(category);
+    });
+
     Company.findById(req.params.company_id, function (err, company) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
+
             company.name = req.body.name;
+            company.categories = casted;
             company.details = req.body.details;
             company.isDelivery = req.body.isDelivery;
             company.isCash = req.body.isCash;
@@ -98,7 +105,7 @@ exports.updateCompany = function (req, res, next) {
                     res.json(400, {
                         status: "fail",
                         data: err
-                    })
+                    });
                 } else {
                     res.json(200, {
                         status: 'success',
@@ -119,7 +126,7 @@ exports.deleteCompany = function (req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
             res.json(200, {
                 status: 'success',

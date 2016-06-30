@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Category = require('./modelCategory');
+var Category = require('./Category');
 
 var CompanySchema = new Schema({
     name: { type: String, required: true, trim: true },

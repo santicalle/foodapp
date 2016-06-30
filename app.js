@@ -47,10 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/users', users);
 
 // define api routes
-var category = require('./routes/routeCategory');
-var rol = require('./routes/routeRol');
-var menuCategory = require('./routes/routeMenuCategory');
-var company = require('./routes/routeCompany');
+var category = require('./routes/Category');
+var rol = require('./routes/Rol');
+var menuCategory = require('./routes/MenuCategory');
+var company = require('./routes/Company');
 
 app.use('/api/category', category);
 app.use('/api/rol', rol);
