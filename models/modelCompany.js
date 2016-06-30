@@ -4,19 +4,18 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Category = require('./modelCategory');
 
 var CompanySchema = new Schema({
     name: { type: String, required: true, trim: true },
-    tags: { type: String, trim: true },
+    details: { type: String },
+    categories: [ { type: Schema.Types.ObjectId, ref: 'Category' } ],
     isDelivery: { type: Boolean, required: true },
-    isCash: { type: String, required: true },
-    isCreditCard: { type: String, required: true },
-    isActive: { type: Boolean },
-    latitude: String,
-    longitude: String,
-    timetable: [
-        { day: String,  open: String, close: String, isClose: Boolean }
-    ]
+    isCash: { type: Boolean, required: true },
+    isCreditCard: { type: Boolean, required: true },
+    isActive: { type: Boolean, required: true },
+    isOpenNow: { type: Boolean, required: true },
+    timetable: [ {  } ]
 }, { collection: 'companies' });
 
 var Company = mongoose.model('Company', CompanySchema);

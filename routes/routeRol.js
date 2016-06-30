@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-var rol = require('../controllers/rol');
+var rol = require('../controllers/controllerRol');
 
 router.get('/all', rol.getAllRol);
 router.get('/:rol_id', rol.getIdRol);

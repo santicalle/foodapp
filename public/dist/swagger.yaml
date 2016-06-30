@@ -1,17 +1,19 @@
 swagger: '2.0'
 info:
-  description: FoodPhone API Documentation
+  description: API Documentation
   version: 1.0.0
-  title: FoodPhone
+  title: FoodPhone.menu
 host: 'localhost:8080'
 basePath: /api
 tags:
   - name: category
-    description: Category Products
+    description: Product Categories
   - name: rol
-    description: Rol Users
+    description: User Roles
   - name: menuCategory
-    description: Category Menus
+    description: Menu Categories
+  - name: company
+    description: Food Companies
 schemes:
   - http
 paths:
@@ -261,7 +263,7 @@ paths:
         - menuCategory
       summary: Get all menuCategories
       description: ""
-      operationId: getAllRoles
+      operationId: getAllMenuCategories
       produces:
         - application/json
       responses:
@@ -279,7 +281,7 @@ paths:
         - menuCategory
       summary: Create new menuCategory
       description: ""
-      operationId: createRol
+      operationId: createMenuCategory
       produces:
         - application/json
       parameters:
@@ -302,7 +304,7 @@ paths:
         - menuCategory
       summary: Get specific menuCategory
       description: ""
-      operationId: getRolById
+      operationId: getMenuCategoryById
       produces:
         - application/json
       parameters:
@@ -325,7 +327,7 @@ paths:
         - menuCategory
       summary: Update an existing menuCategory
       description: ""
-      operationId: updateRol
+      operationId: updateMenuCategory
       consumes:
         - application/json
       produces:
@@ -354,7 +356,7 @@ paths:
         - menuCategory
       summary: Delete menuCategory by ID
       description: ""
-      operationId: deleteRol
+      operationId: deleteMenuCategory
       produces:
         - application/json
       parameters:
@@ -372,6 +374,125 @@ paths:
           description: Invalid ID supplied
         '404':
           description: MenuCategory not found
+          
+#company
+  /company/all:
+    get:
+      tags:
+        - company
+      summary: Get all companies
+      description: ""
+      operationId: getAllCompanies
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Company'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Company not found
+  /company:
+    post:
+      tags:
+        - company
+      summary: Create new company
+      description: ""
+      operationId: createCompany
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: new company
+          required: false
+          schema:
+            $ref: "#/definitions/Company"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Company"
+        "400":
+          description: Invalid Company
+  /company/{companyId}:
+    get:
+      tags:
+        - company
+      summary: Get specific company
+      description: ""
+      operationId: getCompanyById
+      produces:
+        - application/json
+      parameters:
+        - name: companyId
+          in: path
+          description: ID of company
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Company'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Company not found
+    put:
+      tags:
+        - company
+      summary: Update an existing company
+      description: ""
+      operationId: updateCompany
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: companyId
+          in: path
+          description: ID of company
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update company
+          required: false
+          schema:
+            $ref: "#/definitions/Company"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Company not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - company
+      summary: Delete company by ID
+      description: ""
+      operationId: deleteCompany
+      produces:
+        - application/json
+      parameters:
+        - name: companyId
+          in: path
+          description: ID of the company to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Company'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Company not found
 
 definitions:
   Category:
@@ -383,27 +504,59 @@ definitions:
         type: string
       isActive:
         type: boolean
-    xml:
-      name: Category
   Rol:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        isActive:
-          type: boolean
-      xml:
-        name: Rol
+    type: object
+    properties:
+      id:
+        type: string
+      description:
+        type: string
+      isActive:
+        type: boolean
   MenuCategory:
-      type: object
-      properties:
-        id:
+    type: object
+    properties:
+      id:
+        type: string
+      description:
+        type: string
+      isActive:
+        type: boolean
+  Company:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      details:
+        type: string
+      categories:
+        type: array
+        items:
           type: string
-        description:
-          type: string
-        isActive:
-          type: boolean
-      xml:
-        name: MenuCategory
+      isDelivery:
+        type: boolean
+      isCash:
+        type: boolean
+      isCreditCard:
+        type: boolean
+      isActive:
+        type: boolean
+      isOpenNow:
+        type: boolean
+      timetable:
+        type: array
+        items:
+          $ref: "#/definitions/CompanyTimeTable"
+  CompanyTimeTable:
+    type: object
+    properties:
+      day:
+        type: string
+      open:
+        type: string
+      close:
+        type: string
+      isClose:
+        type: boolean

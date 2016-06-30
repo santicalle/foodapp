@@ -2,11 +2,11 @@
  * Created by Santiago Calle on 13/6/2016.
  */
 
-var Category = require('../models/category');
+var Rol = require('../models/modelRol');
 
-exports.getAllCategory = function(req, res, next) {
-    console.log('Get all categories');
-    Category.find(function (err, category) {
+exports.getAllRol = function(req, res, next) {
+    console.log('Get all roles');
+    Rol.find(function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
@@ -15,15 +15,15 @@ exports.getAllCategory = function(req, res, next) {
         }else {
             res.json(200, {
                 status: 'success',
-                data: category
+                data: rol
             });
         }
     });
 };
 
-exports.getIdCategory = function(req, res, next) {
-    console.log('Get specific category ' + req.params.category_id);
-    Category.findById(req.params.category_id, function (err, category) {
+exports.getIdRol = function(req, res, next) {
+    console.log('Get specific rol ' + req.params.rol_id);
+    Rol.findById(req.params.rol_id, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
@@ -33,19 +33,19 @@ exports.getIdCategory = function(req, res, next) {
 
             res.json(200, {
                 status: 'success',
-                data: category
+                data: rol
             });
         }
     })
 };
 
-exports.createCategory = function (req, res, next) {
-    console.log('Enter to create a new category ' + req.body.description);
-    var category = new Category();
-    category.description = req.body.description;
-    category.isActive = 1;
+exports.createRol = function (req, res, next) {
+    console.log('Enter to create a new rol ' + req.body.name);
+    var rol = new Rol();
+    rol.description = req.body.description;
+    rol.isActive = 1;
 
-    category.save(function (err) {
+    rol.save(function (err) {
         if (err){
             res.json(400, {
                 status: "fail",
@@ -55,25 +55,25 @@ exports.createCategory = function (req, res, next) {
 
             res.json(200, {
                 status: 'success',
-                data: { message: "Category created." }
+                data: { message: "Rol created." }
             });
         }
     });
 };
 
-exports.updateCategory = function (req, res, next) {
-    console.log('Update specific category ' + req.params.category_id);
-    Category.findById(req.params.category_id, function (err, category) {
+exports.updateRol = function (req, res, next) {
+    console.log('Update specific rol ' + req.params.rol_id);
+    Rol.findById(req.params.rol_id, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             })
         }else {
-            category.description = req.body.description;
-            category.isActive = req.body.isActive;
+            rol.description = req.body.description;
+            rol.isActive = req.body.isActive;
 
-            category.save(function (err) {
+            rol.save(function (err) {
                 if (err) {
                     res.json(400, {
                         status: "fail",
@@ -82,7 +82,7 @@ exports.updateCategory = function (req, res, next) {
                 } else {
                     res.json(200, {
                         status: 'success',
-                        data: 'Category updated.'
+                        data: 'Rol updated.'
                     });
                 }
             });
@@ -90,11 +90,11 @@ exports.updateCategory = function (req, res, next) {
     });
 };
 
-exports.deleteCategory = function (req, res, next) {
-    console.log('Delete specific category ' + req.params.category_id);
-    Category.remove({
-        _id : req.params.category_id
-    }, function (err, category) {
+exports.deleteRol = function (req, res, next) {
+    console.log('Delete specific rol ' + req.params.rol_id);
+    Rol.remove({
+        _id : req.params.rol_id
+    }, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
@@ -103,7 +103,7 @@ exports.deleteCategory = function (req, res, next) {
         }else {
             res.json(200, {
                 status: 'success',
-                data: { message: 'Category deleted.' }
+                data: { message: 'Rol deleted.' }
             });
         }
     });

@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-var category = require('../controllers/category');
+var category = require('../controllers/controllerCategory');
 
 router.get('/all', category.getAllCategory);
 router.get('/:category_id', category.getIdCategory);

@@ -6,13 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+//var routes = require('./routes/index');
+//var users = require('./routes/users');
 
 // connect to our database
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://santicalle:santi1234@jello.modulusmongo.net:27017/q4yryNyq');
-//mongoose.connect('mongodb://localhost:27017/FoodApp');
+//mongoose.connect('mongodb://santicalle:santi1234@ds023054.mlab.com:23054/foodphone');
+//mongoose.connect('mongodb://santicalle:santi1234@jello.modulusmongo.net:27017/q4yryNyq');
+mongoose.connect('mongodb://localhost:27017/FoodApp');
 
 /*
 //accept cors connections
@@ -42,16 +43,19 @@ app.use(cookieParser());
 app.use('/swagger', express.static(path.join(__dirname, 'public/dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/express', routes);
-app.use('/users', users);
+//app.use('/express', routes);
+//app.use('/users', users);
 
 // define api routes
-var category = require('./routes/category');
-var rol = require('./routes/rol');
-var menuCategory = require('./routes/menuCategory');
+var category = require('./routes/routeCategory');
+var rol = require('./routes/routeRol');
+var menuCategory = require('./routes/routeMenuCategory');
+var company = require('./routes/routeCompany');
+
 app.use('/api/category', category);
 app.use('/api/rol', rol);
 app.use('/api/menuCategory', menuCategory);
+app.use('/api/company', company);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

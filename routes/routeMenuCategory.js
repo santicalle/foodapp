@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-var menuCategory = require('../controllers/menuCategory');
+var menuCategory = require('../controllers/controllerMenuCategory');
 
 router.get('/all', menuCategory.getAllMenuCategory);
 router.get('/:menuCategory_id', menuCategory.getIdMenuCategory);
