@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-var company = require('../controllers/controllerCompany');
+var company = require('../controllers/Company');
 
 router.get('/all', company.getAllCompany);
 router.get('/:company_id', company.getIdCompany);

@@ -2,7 +2,7 @@
  * Created by Santiago Calle on 13/6/2016.
  */
 
-var Rol = require('../models/modelRol');
+var Rol = require('../models/Rol');
 
 exports.getAllRol = function(req, res, next) {
     console.log('Get all roles');

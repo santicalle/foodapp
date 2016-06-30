@@ -2,7 +2,7 @@
  * Created by Santiago Calle on 13/6/2016.
  */
 
-var Category = require('../models/modelCategory');
+var Category = require('../models/Category');
 
 exports.getAllCategory = function(req, res, next) {
     console.log('Get all categories');
@@ -11,7 +11,7 @@ exports.getAllCategory = function(req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
             res.json(200, {
                 status: 'success',
@@ -28,7 +28,7 @@ exports.getIdCategory = function(req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
 
             res.json(200, {
@@ -50,7 +50,7 @@ exports.createCategory = function (req, res, next) {
             res.json(400, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
 
             res.json(200, {
@@ -68,7 +68,7 @@ exports.updateCategory = function (req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
             category.description = req.body.description;
             category.isActive = req.body.isActive;
@@ -78,7 +78,7 @@ exports.updateCategory = function (req, res, next) {
                     res.json(400, {
                         status: "fail",
                         data: err
-                    })
+                    });
                 } else {
                     res.json(200, {
                         status: 'success',
@@ -99,7 +99,7 @@ exports.deleteCategory = function (req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
+            });
         }else {
             res.json(200, {
                 status: 'success',

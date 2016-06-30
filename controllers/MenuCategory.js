@@ -2,7 +2,7 @@
  * Created by Santiago Calle on 13/6/2016.
  */
 
-var MenuCategory = require('../models/modelMenuCategory');
+var MenuCategory = require('../models/MenuCategory');
 
 exports.getAllMenuCategory = function(req, res, next) {
     console.log('Get all menuCategories');

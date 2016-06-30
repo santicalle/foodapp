@@ -2,7 +2,7 @@
  * Created by Santiago Calle on 13/6/2016.
  */
 
-var Company = require('../models/modelCompany');
+var Company = require('../models/Company');
 var mongoose = require('mongoose');
 
 exports.getAllCompany = function(req, res, next) {
