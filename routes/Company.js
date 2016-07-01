@@ -8,9 +8,9 @@ var router = express.Router();
 var company = require('../controllers/Company');
 
 router.get('/all', company.getAllCompany);
-router.get('/:company_id', company.getIdCompany);
+router.get('/:companyId', company.getCompanyById);
 router.post('/', company.createCompany);
-router.put('/:company_id', company.updateCompany);
-router.delete('/:company_id', company.deleteCompany);
+router.put('/:companyId', company.updateCompany);
+router.delete('/:companyId', company.deleteCompany);
 
 module.exports = router;

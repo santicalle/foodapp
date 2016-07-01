@@ -8,9 +8,9 @@ var router = express.Router();
 var menuCategory = require('../controllers/MenuCategory');
 
 router.get('/all', menuCategory.getAllMenuCategory);
-router.get('/:menuCategory_id', menuCategory.getIdMenuCategory);
+router.get('/:menuCategoryId', menuCategory.getMenuCategoryById);
 router.post('/', menuCategory.createMenuCategory);
-router.put('/:menuCategory_id', menuCategory.updateMenuCategory);
-router.delete('/:menuCategory_id', menuCategory.deleteMenuCategory);
+router.put('/:menuCategoryId', menuCategory.updateMenuCategory);
+router.delete('/:menuCategoryId', menuCategory.deleteMenuCategory);
 
 module.exports = router;

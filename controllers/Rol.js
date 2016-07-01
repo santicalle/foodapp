@@ -11,8 +11,8 @@ exports.getAllRol = function(req, res, next) {
             res.json(404, {
                 status: "fail",
                 data : err
-            })
-        }else {
+            });
+        } else {
             res.json(200, {
                 status: 'success',
                 data: rol
@@ -21,15 +21,15 @@ exports.getAllRol = function(req, res, next) {
     });
 };
 
-exports.getIdRol = function(req, res, next) {
-    console.log('Get specific rol ' + req.params.rol_id);
-    Rol.findById(req.params.rol_id, function (err, rol) {
+exports.getRolbyId = function(req, res, next) {
+    console.log('Get specific rol ' + req.params.rolId);
+    Rol.findById(req.params.rolId, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
-            })
-        }else {
+            });
+        } else {
 
             res.json(200, {
                 status: 'success',
@@ -42,7 +42,7 @@ exports.getIdRol = function(req, res, next) {
 exports.createRol = function (req, res, next) {
     console.log('Enter to create a new rol ' + req.body.name);
     var rol = new Rol();
-    rol.description = req.body.description;
+    rol.name = req.body.name;
     rol.isActive = 1;
 
     rol.save(function (err) {
@@ -50,8 +50,8 @@ exports.createRol = function (req, res, next) {
             res.json(400, {
                 status: "fail",
                 data : err
-            })
-        }else {
+            });
+        } else {
 
             res.json(200, {
                 status: 'success',
@@ -62,15 +62,15 @@ exports.createRol = function (req, res, next) {
 };
 
 exports.updateRol = function (req, res, next) {
-    console.log('Update specific rol ' + req.params.rol_id);
-    Rol.findById(req.params.rol_id, function (err, rol) {
+    console.log('Update specific rol ' + req.params.rolId);
+    Rol.findById(req.params.rolId, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
-            })
-        }else {
-            rol.description = req.body.description;
+            });
+        } else {
+            rol.name = req.body.name;
             rol.isActive = req.body.isActive;
 
             rol.save(function (err) {
@@ -78,7 +78,7 @@ exports.updateRol = function (req, res, next) {
                     res.json(400, {
                         status: "fail",
                         data: err
-                    })
+                    });
                 } else {
                     res.json(200, {
                         status: 'success',
@@ -91,16 +91,16 @@ exports.updateRol = function (req, res, next) {
 };
 
 exports.deleteRol = function (req, res, next) {
-    console.log('Delete specific rol ' + req.params.rol_id);
+    console.log('Delete specific rol ' + req.params.rolId);
     Rol.remove({
-        _id : req.params.rol_id
+        _id : req.params.rolId
     }, function (err, rol) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
-            })
-        }else {
+            });
+        } else {
             res.json(200, {
                 status: 'success',
                 data: { message: 'Rol deleted.' }

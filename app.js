@@ -51,11 +51,17 @@ var category = require('./routes/Category');
 var rol = require('./routes/Rol');
 var menuCategory = require('./routes/MenuCategory');
 var company = require('./routes/Company');
+var parameter = require('./routes/Parameter');
+var questionType = require('./routes/QuestionType');
+var user = require('./routes/User');
 
 app.use('/api/category', category);
 app.use('/api/rol', rol);
 app.use('/api/menuCategory', menuCategory);
 app.use('/api/company', company);
+app.use('/api/parameter', parameter);
+app.use('/api/questionType', questionType);
+app.use('/api/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

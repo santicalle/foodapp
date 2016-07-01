@@ -494,34 +494,399 @@ paths:
         '404':
           description: Company not found
 
+#user
+  /user/all:
+    get:
+      tags:
+        - user
+      summary: Get all users
+      description: ""
+      operationId: getAllUsers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create new user
+      description: ""
+      operationId: createUser
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: New User
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: Invalid User
+  /user/{userId}:
+    get:
+      tags:
+        - user
+      summary: Get specific user
+      description: ""
+      operationId: getUserById
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: ID of User
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Update an existing user
+      description: ""
+      operationId: updateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update User
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: User not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - user
+      summary: Delete user by ID
+      description: ""
+      operationId: deleteUser
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the User to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+
+#questionType
+  /questionType/all:
+    get:
+      tags:
+        - questionType
+      summary: Get all QuestionTypes
+      description: ""
+      operationId: getAllQuestionTypes
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/QuestionType'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: QuestionType not found
+  /questionType:
+    post:
+      tags:
+        - questionType
+      summary: Create new QuestionType
+      description: ""
+      operationId: createQuestionType
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: New QuestionType
+          required: false
+          schema:
+            $ref: "#/definitions/QuestionType"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/QuestionType"
+        "400":
+          description: Invalid QuestionType
+  /questionType/{questionTypeId}:
+    get:
+      tags:
+        - questionType
+      summary: Get specific QuestionType
+      description: ""
+      operationId: getQuestionTypeById
+      produces:
+        - application/json
+      parameters:
+        - name: questionTypeId
+          in: path
+          description: ID of QuestionType
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/QuestionType'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: QuestionType not found
+    put:
+      tags:
+        - questionType
+      summary: Update an existing QuestionType
+      description: ""
+      operationId: updateQuestionType
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: questionTypeId
+          in: path
+          description: ID of questionType
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update QuestionType
+          required: false
+          schema:
+            $ref: "#/definitions/QuestionType"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: QuestionType not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - questionType
+      summary: Delete QuestionType by ID
+      description: ""
+      operationId: deleteQuestionType
+      produces:
+        - application/json
+      parameters:
+        - name: questionTypeId
+          in: path
+          description: ID of the QuestionType to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/QuestionType'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: QuestionType not found
+
+#parameter
+  /parameter/all:
+    get:
+      tags:
+        - parameter
+      summary: Get all Parameters
+      description: ""
+      operationId: getAllParameters
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Parameter'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Parameter not found
+  /parameter:
+    post:
+      tags:
+        - parameter
+      summary: Create new Parameter
+      description: ""
+      operationId: createParameter
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: New Parameter
+          required: false
+          schema:
+            $ref: "#/definitions/Parameter"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Parameter"
+        "400":
+          description: Invalid Parameter
+  /parameter/{parameterId}:
+    get:
+      tags:
+        - parameter
+      summary: Get specific Parameter
+      description: ""
+      operationId: getParameterById
+      produces:
+        - application/json
+      parameters:
+        - name: parameterId
+          in: path
+          description: ID of Parameter
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Parameter'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Parameter not found
+    put:
+      tags:
+        - parameter
+      summary: Update an existing Parameter
+      description: ""
+      operationId: updateParameter
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: parameterId
+          in: path
+          description: ID of parameter
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update Parameter
+          required: false
+          schema:
+            $ref: "#/definitions/Parameter"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Parameter not found
+        "400":
+          description: Invalid ID supplied
+    delete:
+      tags:
+        - parameter
+      summary: Delete Parameter by ID
+      description: ""
+      operationId: deleteParameter
+      produces:
+        - application/json
+      parameters:
+        - name: parameterId
+          in: path
+          description: ID of the Parameter to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Parameter'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Parameter not found
+
 definitions:
+
+#category
   Category:
     type: object
     properties:
       id:
         type: string
-      description:
+      name:
         type: string
       isActive:
         type: boolean
+
+#rol
   Rol:
     type: object
     properties:
       id:
         type: string
-      description:
+      name:
         type: string
       isActive:
         type: boolean
+
+#menuCategory
   MenuCategory:
     type: object
     properties:
       id:
         type: string
-      description:
+      name:
         type: string
       isActive:
         type: boolean
+
+#company
   Company:
     type: object
     properties:
@@ -559,4 +924,100 @@ definitions:
       close:
         type: string
       isClose:
+        type: boolean
+
+#user
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+      addresses:
+        type: array
+        items:
+          $ref: "#/definitions/Addresses"
+      phones:
+        type: array
+        items:
+          $ref: "#/definitions/Phones"
+  Addresses:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      details:
+        type: string
+      latitude:
+        type: string
+      longitude:
+        type: string
+      isActive:
+        type: boolean
+  Phones:
+    type: object
+    properties:
+      name:
+        type: string
+      number:
+        type: string      
+      isActive:
+        type: boolean
+
+#parameters
+  Parameter:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      value:
+        type: string
+      isActive:
+        type: boolean
+      details:
+        type: array
+        items:
+          $ref: "#/definitions/ParameterDetails"
+  ParameterDetails:
+    type: object
+    properties:
+      name:
+        type: string
+      details:
+        type: string
+      numberId:
+        type: number
+      value:        
+        type: string
+      order:
+        type: number
+      isActive:
+        type: boolean
+
+#questionType
+  QuestionType:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      numberId:
+        type: number
+      isActive:
         type: boolean

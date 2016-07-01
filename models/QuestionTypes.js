@@ -5,11 +5,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var categorySchema = new Schema({
+var questionTypeSchema = new Schema({
     name: { type: String, required: true, trim: true },
+    numberId: { type: Number, required: true },
     isActive: { type: Boolean, required: true }
-}, { collection: 'categories' });
+}, { collection: 'questionTypes' });
 
-var Category = mongoose.model('Category', categorySchema);
+var QuestionType = mongoose.model('QuestionType', questionTypeSchema);
 
-module.exports = Category;
+module.exports = QuestionType;

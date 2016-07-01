@@ -12,7 +12,7 @@ exports.getAllCategory = function(req, res, next) {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
             res.json(200, {
                 status: 'success',
                 data: category
@@ -21,16 +21,15 @@ exports.getAllCategory = function(req, res, next) {
     });
 };
 
-exports.getIdCategory = function(req, res, next) {
-    console.log('Get specific category ' + req.params.category_id);
-    Category.findById(req.params.category_id, function (err, category) {
+exports.getCategoryById = function(req, res, next) {
+    console.log('Get specific category ' + req.params.categoryId);
+    Category.findById(req.params.categoryId, function (err, category) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
-
+        } else {
             res.json(200, {
                 status: 'success',
                 data: category
@@ -40,9 +39,9 @@ exports.getIdCategory = function(req, res, next) {
 };
 
 exports.createCategory = function (req, res, next) {
-    console.log('Enter to create a new category ' + req.body.description);
+    console.log('Enter to create a new category ' + req.body.name);
     var category = new Category();
-    category.description = req.body.description;
+    category.name = req.body.name;
     category.isActive = 1;
 
     category.save(function (err) {
@@ -51,7 +50,7 @@ exports.createCategory = function (req, res, next) {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
 
             res.json(200, {
                 status: 'success',
@@ -62,15 +61,15 @@ exports.createCategory = function (req, res, next) {
 };
 
 exports.updateCategory = function (req, res, next) {
-    console.log('Update specific category ' + req.params.category_id);
-    Category.findById(req.params.category_id, function (err, category) {
+    console.log('Update specific category ' + req.params.categoryId);
+    Category.findById(req.params.categoryId, function (err, category) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
-            category.description = req.body.description;
+        } else {
+            category.name = req.body.name;
             category.isActive = req.body.isActive;
 
             category.save(function (err) {
@@ -91,16 +90,16 @@ exports.updateCategory = function (req, res, next) {
 };
 
 exports.deleteCategory = function (req, res, next) {
-    console.log('Delete specific category ' + req.params.category_id);
+    console.log('Delete specific category ' + req.params.categoryId);
     Category.remove({
-        _id : req.params.category_id
+        _id : req.params.categoryId
     }, function (err, category) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
             res.json(200, {
                 status: 'success',
                 data: { message: 'Category deleted.' }

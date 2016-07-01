@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var RolSchema = new Schema({
-    description: { type: String, required: true, trim: true },
+    name: { type: String, required: true, trim: true },
     isActive: { type: Boolean, required: true }
 }, { collection: 'roles' });
 

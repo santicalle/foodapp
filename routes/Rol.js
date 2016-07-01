@@ -8,9 +8,9 @@ var router = express.Router();
 var rol = require('../controllers/Rol');
 
 router.get('/all', rol.getAllRol);
-router.get('/:rol_id', rol.getIdRol);
+router.get('/:rolId', rol.getRolById);
 router.post('/', rol.createRol);
-router.put('/:rol_id', rol.updateRol);
-router.delete('/:rol_id', rol.deleteRol);
+router.put('/:rolId', rol.updateRol);
+router.delete('/:rolId', rol.deleteRol);
 
 module.exports = router;

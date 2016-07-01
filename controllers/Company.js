@@ -13,7 +13,7 @@ exports.getAllCompany = function(req, res, next) {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
             res.json(200, {
                 status: 'success',
                 data: company
@@ -22,15 +22,15 @@ exports.getAllCompany = function(req, res, next) {
     });
 };
 
-exports.getIdCompany = function(req, res, next) {
-    console.log('Get specific company ' + req.params.company_id);
-    Company.findById(req.params.company_id, function (err, company) {
+exports.getCompanyById = function(req, res, next) {
+    console.log('Get specific company ' + req.params.companyId);
+    Company.findById(req.params.companyId, function (err, company) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
 
             res.json(200, {
                 status: 'success',
@@ -45,12 +45,12 @@ exports.createCompany = function (req, res, next) {
 
     var company = new Company();
 
-    var casted = req.body.categories.map(function( category ) {
+    var castedCategories = req.body.categories.map(function( category ) {
         return mongoose.Types.ObjectId(category);
     });
 
     company.name = req.body.name;
-    company.categories = casted;
+    company.categories = castedCategories;
     company.details = req.body.details;
     company.isDelivery = req.body.isDelivery;
     company.isCash = req.body.isCash;
@@ -65,7 +65,7 @@ exports.createCompany = function (req, res, next) {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
 
             res.json(200, {
                 status: 'success',
@@ -76,22 +76,22 @@ exports.createCompany = function (req, res, next) {
 };
 
 exports.updateCompany = function (req, res, next) {
-    console.log('Update specific company ' + req.params.company_id);
+    console.log('Update specific company ' + req.params.companyId);
 
-    var casted = req.body.categories.map(function( category ) {
+    var castedCategories = req.body.categories.map(function( category ) {
         return mongoose.Types.ObjectId(category);
     });
 
-    Company.findById(req.params.company_id, function (err, company) {
+    Company.findById(req.params.companyId, function (err, company) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
 
             company.name = req.body.name;
-            company.categories = casted;
+            company.categories = castedCategories;
             company.details = req.body.details;
             company.isDelivery = req.body.isDelivery;
             company.isCash = req.body.isCash;
@@ -118,16 +118,16 @@ exports.updateCompany = function (req, res, next) {
 };
 
 exports.deleteCompany = function (req, res, next) {
-    console.log('Delete specific company ' + req.params.company_id);
+    console.log('Delete specific company ' + req.params.companyId);
     Company.remove({
-        _id : req.params.company_id
+        _id : req.params.companyId
     }, function (err, company) {
         if (err){
             res.json(404, {
                 status: "fail",
                 data : err
             });
-        }else {
+        } else {
             res.json(200, {
                 status: 'success',
                 data: { message: 'Company deleted.' }
